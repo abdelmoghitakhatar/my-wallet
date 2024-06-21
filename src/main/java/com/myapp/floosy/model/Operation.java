@@ -4,6 +4,8 @@ import com.myapp.floosy.model.enumeration.TypeOperation;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
+
 @Entity(name = "operation")
 public class Operation {
 
@@ -12,9 +14,15 @@ public class Operation {
     private Long id;
 
     @NotNull
+    @Column(nullable = false)
     private double montant;
 
+    @NotNull
+    @Column(nullable = false)
     private TypeOperation operation;
+
+    @Column(nullable = false)
+    private LocalDateTime date = LocalDateTime.now();
 
     public Long getId() {
         return id;
