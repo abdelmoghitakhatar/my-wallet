@@ -11,14 +11,16 @@
 <div class="container">
     <div class="col-8 mx-auto mt-4 p-3 border rounded bg-body-tertiary text-center">
         <h3>Your Have Now</h3>
-        <h1 class="my-4" th:if="${wallet != null}" th:text="${wallet.rest}+ 'MAD'"></h1>
+        <h1 class="my-4" th:if="${wallet != null}" th:text="${wallet.rest}+' MAD'"></h1>
         <h1 class="mb-4" th:if="${wallet == null}">0 MAD</h1>
         <div class="d-grid gap-2 mx-5">
             <form id="form" enctype="multipart/form-data" method="post">
-                <input type="number" id="montant" hidden th:value="${operation.montant}">
-                <input type="text" hidden id="operation" th:value="${operation.operation}">
-                <a class="btn btn-primary" role="button" href="#" onclick="addOperation('in')">Operation in</a>
-                <a class="btn btn-primary" role="button" href="#" onclick="addOperation('out')">Operation out</a>
+                <div th:object="${op}">
+                    <input type="number" hidden id="montant" th:field="*{montant}">
+                    <input type="text" hidden id="operation" th:field="*{operation}">
+                </div>
+                <button class="btn btn-primary" type="button" onclick="addOperation('in')">Operation in</button>
+                <button class="btn btn-primary" type="button" onclick="addOperation('out')">Operation out</button>
             </form>
         </div>
     </div>

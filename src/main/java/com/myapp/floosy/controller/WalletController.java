@@ -31,12 +31,12 @@ public class WalletController {
         Operation operation = new Operation();
         Wallet wallet = walletService.getCurrentState();
         model.addAttribute("wallet", wallet);
-        model.addAttribute("operation", operation);
+        model.addAttribute("op", operation);
         return "index";
     }
 
     @PostMapping("/")
-    public String index(@Valid @ModelAttribute Operation operation, BindingResult result){
+    public String add(@Valid @ModelAttribute(name = "op") Operation operation, BindingResult result){
 
         walletService.saveNewWallet(operation);
         return "redirect:/";

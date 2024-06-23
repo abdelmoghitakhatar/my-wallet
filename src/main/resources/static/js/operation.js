@@ -1,12 +1,6 @@
 function addOperation(operation){
     let isValidInput = false;
     let montant;
-    let i = 0;
-
-    do {
-        if (i>0) {
-            alert("Please enter a valid number.");
-        }
 
         switch (operation) {
             case 'in':
@@ -23,11 +17,14 @@ function addOperation(operation){
         }
 
         isValidInput = !isNaN(parseFloat(montant)) && isFinite(montant) && montant>=0;
-        i++;
-    } while (!isValidInput);
 
-    document.getElementById("montant").value = +montant;
-    document.getElementById("operation").value = operation;
+    if (!isValidInput) {
+        alert("Please enter a valid number!");
+    } else {
+        document.getElementById("montant").value = +montant;
+        document.getElementById("operation").value = operation;
+        console.log(`operation : ${operation}\ntype : ${typeof operation}`)
+        document.getElementById("form").submit();
+    }
 
-    document.getElementById("form").submit();
 }

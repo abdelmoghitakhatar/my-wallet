@@ -33,17 +33,17 @@ public class WalletService {
         Wallet wallet = getCurrentState();
 
         switch (operation.getOperation()){
-            case in:
+            case "in":
                 newWallet.setRest(wallet.getRest() + operation.getMontant());
                 break;
-            case out:
+            case "out":
                 newWallet.setRest(wallet.getRest() - operation.getMontant());
                 break;
             default: break;
         }
 
         operationRepository.save(operation);
-        return walletRepository.save(wallet);
+        return walletRepository.save(newWallet);
     }
 
 
