@@ -9,7 +9,7 @@
 <body>
 
 <div class="container">
-    <div class="col-8 mx-auto mt-4 p-3 border rounded bg-body-tertiary text-center">
+    <div class="col-8 mx-auto mt-4 p-3 border rounded bg-body-tertiary text-center" style="min-width: max-content">
         <h3>Your Have Now</h3>
         <h1 class="my-4" th:if="${wallet != null}" th:text="${wallet.rest}+' MAD'"></h1>
         <h1 class="mb-4" th:if="${wallet == null}">0 MAD</h1>
@@ -24,7 +24,24 @@
             </form>
         </div>
     </div>
-    <div class="p-3">
+    <div class="col-8 mx-auto mt-2 p-3 border rounded bg-primary-subtle text-center" style="min-width: max-content">
+        <div th:each="singleOperation: ${operationList}">
+            <div class="row border rounded bg-light p-2">
+                <div class="border-end col-3 text-secondary">
+                    <span th:text="${singleOperation.date.toString().substring(0, 10)}"></span><br>
+                    <span th:text="'at - '+${singleOperation.date.toLocalTime().toString().substring(0, 8)}"></span>
+                </div>
+                <div class="col-6 text-start border-end">
+                    <p th:text="${singleOperation.operation}"></p>
+                </div>
+                <div class="col-3">
+                    <p
+                        th:class="${singleOperation.operation.toString()}=='in'?'text-success':'text-danger'"
+                        th:text="(${singleOperation.operation.toString()}=='in'?'+':'-')+
+                        ${singleOperation.montant}+' MAD'"></p>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

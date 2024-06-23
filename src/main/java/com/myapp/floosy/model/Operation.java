@@ -1,5 +1,6 @@
 package com.myapp.floosy.model;
 
+import com.myapp.floosy.model.enumeration.TypeOperation;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,8 +18,9 @@ public class Operation {
     private double montant;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String operation;
+    private TypeOperation operation;
 
     @Column(nullable = false)
     private LocalDateTime date = LocalDateTime.now();
@@ -39,11 +41,19 @@ public class Operation {
         this.montant = montant;
     }
 
-    public String getOperation() {
+    public TypeOperation getOperation() {
         return operation;
     }
 
-    public void setOperation(String operation) {
+    public void setOperation(TypeOperation operation) {
         this.operation = operation;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }

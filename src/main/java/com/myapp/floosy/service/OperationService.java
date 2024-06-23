@@ -3,6 +3,7 @@ package com.myapp.floosy.service;
 import com.myapp.floosy.dao.OperationRepository;
 import com.myapp.floosy.model.Operation;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class OperationService {
     }
 
     public List<Operation> getAllOperations(){
-        return operationRepository.findAll();
+        return operationRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     public Operation save(Operation operation){

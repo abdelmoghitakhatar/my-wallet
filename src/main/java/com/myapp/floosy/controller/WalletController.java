@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("")
 public class WalletController {
@@ -30,8 +32,12 @@ public class WalletController {
 
         Operation operation = new Operation();
         Wallet wallet = walletService.getCurrentState();
+        List<Operation> operationList = operationService.getAllOperations();
+
         model.addAttribute("wallet", wallet);
         model.addAttribute("op", operation);
+        model.addAttribute("operationList", operationList);
+
         return "index";
     }
 
