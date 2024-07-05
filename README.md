@@ -2,7 +2,7 @@
 
 ___
 ___
-## Petite Description
+## Small Description
 #### This very small application is just for learning how `thymeleaf` works and practicing it.
 
 ---
