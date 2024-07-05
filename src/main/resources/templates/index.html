@@ -16,11 +16,18 @@
         <div class="d-grid gap-2 mx-5">
             <form id="form" enctype="multipart/form-data" method="post">
                 <div th:object="${op}">
-                    <input type="number" hidden id="montant" th:field="*{montant}">
+                    <div class="row mb-3">
+                        <label for="montant" class="form-label">Montant</label>
+                        <input class="form-control" type="number" step="0.01" id="montant" th:field="*{montant}">
+                    </div>
+                    <div class="row mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+                    </div>
                     <input type="text" hidden id="operation" th:field="*{operation}">
                 </div>
-                <button class="btn btn-primary" type="button" onclick="addOperation('in')">Operation in</button>
-                <button class="btn btn-primary" type="button" onclick="addOperation('out')">Operation out</button>
+                <button id="in" class="btn btn-primary" type="button" onclick="addOperation('in')" disabled>Operation in</button>
+                <button id="out" class="btn btn-primary" type="button" onclick="addOperation('out')" disabled>Operation out</button>
             </form>
         </div>
     </div>
@@ -32,7 +39,7 @@
                     <span th:text="'at - '+${singleOperation.date.toLocalTime().toString().substring(0, 8)}"></span>
                 </div>
                 <div class="col-6 text-start border-end">
-                    <p th:text="${singleOperation.operation}"></p>
+                    <p style="word-break: break-word; overflow-wrap: break-word;" th:text="${singleOperation.description}"></p>
                 </div>
                 <div class="col-3">
                     <p

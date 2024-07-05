@@ -17,6 +17,8 @@ public class Operation {
     @Column(nullable = false)
     private double montant;
 
+    private String description;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -55,5 +57,13 @@ public class Operation {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
